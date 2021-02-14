@@ -42,11 +42,11 @@ public class JobTest {
     @Test
     public void testJobToString(){
                assertEquals(" \n" +
-                "id: 8\n" +
+                "id: " + myTestJob.getId() + "\n" +
                 "name: 'Product tester'\n" +
                 "employer: ACME\n" +
                 "location: Desert\n" +
-                "positionType: PositionTypes:{value: Quality control'}\n" +
+                "positionType: Quality control\n" +
                 "coreCompetency: Persistence " +
                 "\n",String.valueOf(myTestJob));
     }
@@ -56,7 +56,13 @@ public class JobTest {
         String.valueOf(myTestJob);
         String myTestJobName = myTestJob.toString().substring(myTestJob.toString().indexOf("name: "), myTestJob.toString().indexOf("employer: ")-1);
         assertEquals("name: 'Data not available'", myTestJobName);
-
+    }
+    @Test
+    public void testJobEmptyString(){
+        Job job3 = new Job("Ice cream taster", new Employer(""), new Location("Home"), new PositionType("UX"), new CoreCompetency("Taste"));
+        String.valueOf(job3);
+        String myTestJobName = job3.toString().substring(job3.toString().indexOf("employer: "), job3.toString().indexOf("location: ")-1);
+        assertEquals("employer: Data not available",myTestJobName);
     }
 
 }
